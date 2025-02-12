@@ -1,18 +1,9 @@
-"use client";
-
 import Image from "next/image";
-import YouTube from "react-youtube";
+
 import GreenSection from "./GreenSection";
+import YoutubeSection from "./YoutubeSection";
 
 const Banner = () => {
-  const opts = {
-    height: "100%",
-    width: "100%",
-    playerVars: {
-      autoplay: 0,
-    },
-  };
-
   return (
     <section className="relative  py-16">
       <div className="mx-auto">
@@ -30,7 +21,7 @@ const Banner = () => {
             }
           />
           <div className="w-full  mx-auto rounded-lg overflow-hidden shadow-2xl ring-4 ring-lime-600">
-            <YouTube videoId="U9JMdmQaDOg" opts={opts} className="aspect-video w-full " />
+            <YoutubeSection />
           </div>
         </div>
         <GreenSection

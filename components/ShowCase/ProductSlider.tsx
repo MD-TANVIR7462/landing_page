@@ -2,12 +2,14 @@
 
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
-  "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1200&auto=format&fit=crop",
+  "/img1.jpg",
+  "/img2.jpg",
+  "/img3.jpg",
+  "/img4.jpg",
+  "/img5.jpg",
 ];
 
 const swipeConfidenceThreshold = 10000;
@@ -25,7 +27,7 @@ const ProductSlider = () => {
     }, 3000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [page]);
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
@@ -59,7 +61,21 @@ const ProductSlider = () => {
   };
 
   return (
-    <div className="relative border border-red-600 h-[400px] overflow-hidden rounded-lg">
+    <div className="relative border border-gray-300 h-[400px] overflow-hidden rounded-lg mb-12">
+      {/* Navigation Arrows */}
+      <button
+        onClick={() => paginate(-1)}
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 z-10 bg-gray-700/50 text-white p-2 rounded-full"
+      >
+        <ChevronLeft size={24} />
+      </button>
+      <button
+        onClick={() => paginate(1)}
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 z-10 bg-gray-700/50 text-white p-2 rounded-full"
+      >
+        <ChevronRight size={24} />
+      </button>
+      
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={page}
@@ -85,29 +101,11 @@ const ProductSlider = () => {
           />
         </motion.div>
       </AnimatePresence>
-
-      {/* Navigation Arrows */}
-      <div className="absolute inset-0 flex items-center justify-between p-4">
-        <button
-          className="p-2 rounded-full bg-white/30 hover:bg-white/50 transition-colors"
-          onClick={() => paginate(-1)}
-        >
-          ←
-        </button>
-        <button
-          className="p-2 rounded-full bg-white/30 hover:bg-white/50 transition-colors"
-          onClick={() => paginate(1)}
-        >
-          →
-        </button>
-      </div>
-
-      {/* Dots */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
         {images.map((_, index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full transition-colors ${imageIndex === index ? "bg-white" : "bg-white/50"}`}
+            className={`w-2 h-2 rounded-full transition-colors z-10 ${imageIndex === index ? "bg-black" : "bg-white/50"}`}
             onClick={() => setPage([index, index > page ? 1 : -1])}
           />
         ))}
