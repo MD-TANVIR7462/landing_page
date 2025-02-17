@@ -31,10 +31,8 @@ export function Reviews() {
             <div className="p-1">
               <Card>
                 <div className="flex aspect-square items-center justify-center ">
-               
-                    {" "}
-                    <Image src={img} width={1000} height={1000} alt="Review Image" className="w-full h-full"  />{" "}
-             
+                  {" "}
+                  <Image src={img} width={1000} height={1000} alt="Review Image" className="w-full h-full" />{" "}
                 </div>
               </Card>
             </div>
